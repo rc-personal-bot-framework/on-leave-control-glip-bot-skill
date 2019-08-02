@@ -1,19 +1,22 @@
 import { Component } from 'react-subx'
 import { Table, Popconfirm, Icon, Spin, Modal } from 'antd'
+import moment from 'moment'
 import OlcForm from './olc-form'
+
+const format = 'YYYY-MM-DD HH:mm'
 
 export default class Olcs extends Component {
   state = {
     editting: false
   }
 
-  del = (faq) => {
-    this.props.store.del(faq.id)
+  del = (olc) => {
+    this.props.store.del(olc.id)
   }
 
-  edit = faq => {
+  edit = olc => {
     this.setState({
-      editting: faq
+      editting: olc
     })
   }
 
@@ -24,15 +27,15 @@ export default class Olcs extends Component {
   }
 
   submit = async (update, callback) => {
-    let faq = this.state.editting
+    let olc = this.state.editting
     this.props.store.loading = true
     let res = await this.props.store.update(
-      faq.id,
+      olc.id,
       update
     )
     this.props.store.loading = false
     this.setState({
-      editting: res ? false : faq
+      editting: res ? false : olc
     })
     if (res && callback) {
       callback()
@@ -42,18 +45,18 @@ export default class Olcs extends Component {
   empty () {
     return (
       <div className='pd2y aligncenter'>
-        No faqs yet.
+        No items yet.
       </div>
     )
   }
 
   render () {
-    let { faqs, loading } = this.props.store
-    if (!faqs.length) {
+    let { olcs, loading } = this.props.store
+    if (!olcs.length) {
       return this.empty()
     }
     let { editting } = this.state
-    let src = faqs.map((f, i) => {
+    let src = olcs.map((f, i) => {
       return {
         ...f,
         index: i + 1
@@ -72,29 +75,45 @@ export default class Olcs extends Component {
         sorter: (a, b) => a.count - b.count
       },
       {
-        title: 'Keywords',
-        dataIndex: 'keywords',
-        key: 'keywords'
+        title: 'Time range',
+        dataIndex: 'timerange',
+        key: 'timerange',
+        render: (text, olc) => {
+          let {
+            timefrom,
+            timeto,
+            timezone
+          } = olc
+          let offset = Number(timezone.split(':')[1])
+          let f = moment(timefrom).utc.utcOffset(offset).format(format)
+          let t = moment(timeto).utc.utcOffset(offset).format(format)
+          return `${f} ~ ${t}`
+        }
       },
       {
-        title: 'Answer',
-        dataIndex: 'answer',
-        key: 'answer'
+        title: 'Timezone',
+        dataIndex: 'timezone',
+        key: 'timezone'
+      },
+      {
+        title: 'Note',
+        dataIndex: 'note',
+        key: 'note'
       },
       {
         title: 'Ops',
         dataIndex: 'ops',
         key: 'ops',
-        render: (text, faq) => {
+        render: (text, olc) => {
           return (
             <div>
               <Icon
                 type='edit'
                 className='font16 mg1l pointer'
-                onClick={() => this.edit(faq)}
+                onClick={() => this.edit(olc)}
               />
               <Popconfirm
-                onConfirm={() => this.del(faq)}
+                onConfirm={() => this.del(olc)}
               >
                 <Icon
                   type='minus-circle'
@@ -107,16 +126,16 @@ export default class Olcs extends Component {
       }
     ]
     return (
-      <div className='pd1b faq-items'>
+      <div className='pd1b olc-items'>
         <Modal
           visible={!!editting}
-          title='Edit FAQ Item'
+          title='Edit olc Item'
           footer={null}
           onCancel={this.cancelEdit}
         >
           <OlcForm
             submitting={loading}
-            faq={editting}
+            olc={editting}
             onSubmit={this.submit}
             onCancel={this.cancelEdit}
             submitText='Update'

@@ -19,7 +19,7 @@ export default class App extends Component {
       <Spin spinning={store.fetchingUser}>
         <div className='wrap'>
           <h1>On leave control setting</h1>
-          <p>You can set on leave time and on leave message, during on leave time, anyone mentions you or send private message, will get auto reponse message setted by you.</p>
+          <p>You can set on leave time and on leave message, during on leave time, anyone mentions you or send private message, will get auto reponse message set by you.</p>
           <AddOlc store={store} />
           <Olcs store={store} />
         </div>

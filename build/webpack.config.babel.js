@@ -111,7 +111,7 @@ const config = {
       '/': {
         target: `http://${env.SERVER_HOST}:${env.SERVER_PORT}`,
         bypass: function (req, res, proxyOptions) {
-          if (req.path.includes('rcpbs-faq')) {
+          if (req.path.includes('rcpbs-olc')) {
             return req.path
           }
         }

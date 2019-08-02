@@ -3,7 +3,7 @@
  */
 
 import { resolve } from 'path'
-import Faq from './model'
+import Olc from './model'
 import { generate } from 'shortid'
 import copy from 'json-deep-copy'
 import _ from 'lodash'
@@ -64,7 +64,7 @@ export default (app) => {
     }
     let result
     if (action === 'list') {
-      result = await Faq.findAll({
+      result = await Olc.findAll({
         where: {
           user_id: userId
         }
@@ -72,20 +72,20 @@ export default (app) => {
         plain: true
       }))
     } else if (action === 'del') {
-      result = await Faq.destroy({
+      result = await Olc.destroy({
         where: {
           id: id,
           user_id: userId
         }
       })
     } else if (action === 'add') {
-      result = await Faq.create({
+      result = await Olc.create({
         ...update,
         id: generate(),
         user_id: userId
       })
     } else if (action === 'update') {
-      result = await Faq.update(update, {
+      result = await Olc.update(update, {
         where: {
           id,
           user_id: userId

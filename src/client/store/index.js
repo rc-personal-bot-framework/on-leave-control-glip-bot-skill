@@ -2,10 +2,10 @@ import SubX from 'subx'
 import fetch from '../components/fetch'
 import _ from 'lodash'
 
-const url = window.rc.server + '/skill/faq/olc'
+const url = window.rc.server + '/skill/olc/olc'
 const store = SubX.create({
   botInfo: window.rc.botInfo,
-  faqs: [],
+  olcs: [],
   fetchingUser: false,
   loading: false,
   async list () {
@@ -15,18 +15,18 @@ const store = SubX.create({
     })
     store.fetchingUser = false
     if (res && res.result) {
-      store.faqs = res.result
+      store.olcs = res.result
       return true
     }
     return false
   },
-  async add (faq) {
+  async add (olc) {
     let res = await fetch.post(url, {
       action: 'add',
-      update: faq
+      update: olc
     })
     if (res && res.result) {
-      store.faqs.unshift(res.result)
+      store.olcs.unshift(res.result)
       return true
     }
     return false
@@ -37,7 +37,7 @@ const store = SubX.create({
       id
     })
     if (res && res.result) {
-      store.faqs = store.faqs.filter(d => d.id !== id)
+      store.olcs = store.olcs.filter(d => d.id !== id)
       return true
     }
     return false
@@ -49,7 +49,7 @@ const store = SubX.create({
       update
     })
     if (res && res.result) {
-      let inst = _.find(store.faqs, d => d.id === id)
+      let inst = _.find(store.olcs, d => d.id === id)
       Object.assign(inst, update)
       return true
     }

@@ -90,4 +90,4 @@ export const onPostAdd = async ({
 }
 
 export const appExtend = extendApp
-export const settingPath = '/skill/faq/setting'
+export const settingPath = '/skill/olc/setting'

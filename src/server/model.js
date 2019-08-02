@@ -3,26 +3,29 @@ import Sequelize from 'sequelize'
 import sequelize from 'ringcentral-personal-chatbot/dist/server/models/sequelize'
 
 export default sequelize.define('olc', {
-  id: { // Glip user ID
+  id: {
     type: Sequelize.STRING,
     primaryKey: true
   },
-  user_id: { // glip user name
+  user_id: {
     type: Sequelize.STRING
   },
-  time_from: { // on leave time from
+  timefrom: {
+    type: Sequelize.INTEGER
+  },
+  timeto: {
+    type: Sequelize.INTEGER
+  },
+  timezone: {
+    type: Sequelize.INTEGER
+  },
+  timedef: {
     type: Sequelize.STRING
   },
-  time_to: { // on leave time to
+  note: {
     type: Sequelize.STRING
   },
-  time_def: {
-    type: Sequelize.STRING
-  },
-  note: { // response note
-    type: Sequelize.STRING
-  },
-  token: { // user token
+  token: {
     type: Sequelize.JSON
   },
   enabled: {
