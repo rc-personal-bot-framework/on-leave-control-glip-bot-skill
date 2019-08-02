@@ -1,7 +1,7 @@
 {
-  "name": "ringcentral-personal-chatbot-skill-faq",
+  "name": "on-leave-control-glip-bot-skill",
   "version": "0.5.2",
-  "description": "Bot skill: FAQ, respond to any keywords user defined with corresponding answer",
+  "description": "On leave control bot skill for [ringcentral-personal-chatbot-js]",
   "main": "dist/server/index.js",
   "scripts": {
     "ngrok": "ngrok http -region ap 6066",
@@ -65,7 +65,7 @@
     "shortid": "2.2.14"
   },
   "peerDependencies": {
-    "ringcentral-personal-chatbot": "^0.10.1"
+    "ringcentral-personal-chatbot": "^0.10.3"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -75,10 +75,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rc-personal-bot-framework/ringcentral-personal-chatbot-skill-faq.git"
+    "url": "git+https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill.git"
   },
   "bugs": {
-    "url": "https://github.com/rc-personal-bot-framework/ringcentral-personal-chatbot-skill-faq/issues"
+    "url": "https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill/issues"
   },
-  "homepage": "https://github.com/rc-personal-bot-framework/ringcentral-personal-chatbot-skill-faq#readme"
+  "homepage": "https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill#readme"
 }

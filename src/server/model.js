@@ -1,14 +1,16 @@
 import Sequelize from 'sequelize'
-
+import { generate } from 'shortid'
 import sequelize from 'ringcentral-personal-chatbot/dist/server/models/sequelize'
 
 export default sequelize.define('olc', {
   id: {
     type: Sequelize.STRING,
-    primaryKey: true
+    primaryKey: true,
+    defaultValue: generate
   },
   user_id: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: generate
   },
   timefrom: {
     type: Sequelize.INTEGER
