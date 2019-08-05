@@ -68,9 +68,14 @@ export default (app) => {
         where: {
           user_id: userId
         }
-      }).map(r => r.get({
-        plain: true
-      }))
+      })
+      result = result.map(r => {
+        return r.get
+          ? r.get({
+            plain: true
+          })
+          : r
+      })
     } else if (action === 'del') {
       result = await Olc.destroy({
         where: {

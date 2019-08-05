@@ -128,7 +128,7 @@ class AddOlc extends Component {
                         }
                       ]
                     })(
-                      <Input.TextArea rows={2} placeholder='On leave note' />
+                      <Input.TextArea rows={1} placeholder='On leave note' />
                     )
                   }
                 </FormItem>

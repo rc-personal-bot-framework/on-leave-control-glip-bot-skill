@@ -1,35 +1,9 @@
-import Faq from './model'
+import Olc from './model'
 import extendApp from './app'
 
-export const name = 'Bot skill: FAQ'
+export const name = 'Bot skill: On leave control'
 export const description = 'On leave control bot skill for [ringcentral-personal-chatbot-js], click bot settings to set your rules.'
 export const homepage = 'https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill#readme'
-
-function dequote (str = '') {
-  return str.slice(1, -1)
-}
-
-function check (str, all) {
-  if (/^[\u4e00-\u9fa5]+$/.test(str)) {
-    return all.includes(str)
-  }
-  return new RegExp(`(^|(\\s+))${str}((\\s+)|$)`).test(all)
-}
-
-function hasKeywords (ks, txt) {
-  for (let k of ks) {
-    if (
-      (k.startsWith('"') && k.endsWith('"') && txt === dequote(k)) ||
-      (
-        (!k.startsWith('"') || !k.endsWith('"')) &&
-        check(k, txt)
-      )
-    ) {
-      return true
-    }
-  }
-  return false
-}
 
 export const onPostAdd = async ({
   text, // original text
@@ -42,51 +16,45 @@ export const onPostAdd = async ({
   if (handled) {
     return false
   }
-  await Faq.sync()
-  let faqs = await Faq.findAll({
+  await Olc.sync()
+  let olcs = await Olc.findAll({
     where: {
       user_id: user.id
     }
-  }).map(r => r.get({
-    plain: true
-  }))
-  let res = ''
-
-  for (let faq of faqs) {
-    let ks = faq.keywords.split(',').map(r => r.trim())
-    if (hasKeywords(ks, textFiltered)) {
-      res = faq.answer
-      await Faq.update({
-        count: (faq.count || 0) + 1
+  })
+  olcs = olcs.map(r => {
+    return r.get
+      ? r.get({
+        plain: true
+      })
+      : r
+  })
+  let res = false
+  let now = Date.now()
+  let sign = shouldUseSignature
+    ? `\n(send by [${exports.name}](${exports.homepage}))`
+    : ''
+  for (let olc of olcs) {
+    let {
+      timefrom,
+      timeto,
+      note
+    } = olc
+    if (now >= timefrom && now <= timeto) {
+      res = true
+      await Olc.update({
+        count: (olc.count || 0) + 1
       }, {
         where: {
-          id: faq.id
+          id: olc.id
         }
       })
-      break
+      await user.sendMessage(group.id, {
+        text: note + sign
+      })
     }
   }
-  if (!res && textFiltered === 'faq-help') {
-    let cmds = faqs
-      .sort((a, b) => b.count - a.count)
-      .map(f => f.keywords)
-      .reduce((p, k) => {
-        return p + `* ${k}\n`
-      }, '')
-    cmds = cmds || 'No keywords yet'
-    res = `**Keywords list:**\n${cmds}`
-  }
-  if (res) {
-    let sign = shouldUseSignature
-      ? `\n(send by [${exports.name}](${exports.homepage}))`
-      : ''
-    await user.sendMessage(group.id, {
-      text: res + sign
-    })
-    return true
-  } else {
-    return false
-  }
+  return res
 }
 
 export const appExtend = extendApp

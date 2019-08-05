@@ -4,7 +4,7 @@ Still under contruction....
 
 On leave control bot skill for [ringcentral-personal-chatbot-js](https://github.com/ringcentral/ringcentral-personal-chatbot-js).
 
-![ ](screenshots/setting.png)
+![ ](screenshots/s2.png)
 ![ ](screenshots/s1.png)
 
 ## Quick start
@@ -17,8 +17,7 @@ git clone git@github.com:rc-personal-bot-framework/on-leave-control-glip-bot-ski
 cd on-leave-control-glip-bot-skill
 
 # install dependecies
-npm i
-npm i --no-save ringcentral-personal-chatbot
+npm run i
 
 # start proxy server, this will make your local bot server can be accessed by RingCentral service
 npm run ngrok
@@ -50,7 +49,7 @@ npm run c
 
 ```
 
-Then visit [https://xxxx.ap.ngrok.io](https://xxxx.ap.ngrok.io) to login, after auth, you can set `Bot skill: FAQ`'s keywords and answers from its setting page. Then try the keywords with another account.
+Then visit [https://xxxx.ap.ngrok.io](https://xxxx.ap.ngrok.io) to login, after auth, you can set `Bot skill: on leave control`'s keywords and answers from its setting page. Then try the keywords with another account.
 
 ## Build and run in production
 
@@ -70,10 +69,6 @@ npm run ngrok-p
 ## How to use a bot skill
 
 [https://github.com/rc-personal-bot-framework/ringcentral-personal-chatbot-js/blob/master/docs/write-use-a-skill.md](https://github.com/rc-personal-bot-framework/ringcentral-personal-chatbot-js/blob/master/docs/write-use-a-skill.md)
-
-## Real bot using FAQ skill
-
-[https://github.com/rc-personal-bot-framework/ringcentral-personal-bot-template-js](https://github.com/rc-personal-bot-framework/ringcentral-personal-bot-template-js)
 
 ## License
 

@@ -85,8 +85,8 @@ export default class Olcs extends Component {
             timezone
           } = olc
           let offset = Number(timezone.split(':')[1])
-          let f = moment(timefrom).utc.utcOffset(offset).format(format)
-          let t = moment(timeto).utc.utcOffset(offset).format(format)
+          let f = moment(timefrom).utc().utcOffset(offset).format(format)
+          let t = moment(timeto).utc().utcOffset(offset).format(format)
           return `${f} ~ ${t}`
         }
       },

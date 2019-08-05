@@ -19,7 +19,7 @@ export default sequelize.define('olc', {
     type: Sequelize.INTEGER
   },
   timezone: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   timedef: {
     type: Sequelize.STRING

@@ -1,6 +1,6 @@
 {
   "name": "on-leave-control-glip-bot-skill",
-  "version": "0.5.2",
+  "version": "0.1.0",
   "description": "On leave control bot skill for [ringcentral-personal-chatbot-js]",
   "main": "dist/server/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "build": "npm run clean && npm run compile && npm run release && npm run view",
     "clean": "node build/clean.js",
     "prepublishOnly": "npm run build",
-    "i": "npm i && npm i --no-save ringcentral-personal-chatbot"
+    "i": "npm i && npm i --no-save ringcentral-personal-chatbot",
+    "local-dynamo": "node -r @babel/register build/dynamo-local.js"
   },
   "keywords": [
     "RingCentral",
@@ -41,6 +42,7 @@
     "babel-plugin-import": "1.11.0",
     "cross-env": "5.2.0",
     "css-loader": "2.1.1",
+    "dynamodb-local": "0.0.29",
     "file-loader": "3.0.1",
     "less": "3.9.0",
     "less-loader": "5.0.0",
@@ -65,7 +67,7 @@
     "shortid": "2.2.14"
   },
   "peerDependencies": {
-    "ringcentral-personal-chatbot": "^0.10.3"
+    "ringcentral-personal-chatbot": "^0.10.4"
   },
   "standard": {
     "parser": "babel-eslint",

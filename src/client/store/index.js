@@ -2,7 +2,7 @@ import SubX from 'subx'
 import fetch from '../components/fetch'
 import _ from 'lodash'
 
-const url = window.rc.server + '/skill/olc/olc'
+const url = window.rc.server + '/skill/olc/op'
 const store = SubX.create({
   botInfo: window.rc.botInfo,
   olcs: [],
