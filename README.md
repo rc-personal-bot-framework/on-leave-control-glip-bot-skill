@@ -1,7 +1,5 @@
 # on-leave-control-glip-bot-skill
 
-Still under contruction....
-
 On leave control bot skill for [ringcentral-personal-chatbot-js](https://github.com/ringcentral/ringcentral-personal-chatbot-js).
 
 ![ ](screenshots/s2.png)
