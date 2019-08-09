@@ -25,7 +25,7 @@ export default sequelize.define('olc', {
     type: Sequelize.STRING
   },
   note: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   token: {
     type: Sequelize.JSON
