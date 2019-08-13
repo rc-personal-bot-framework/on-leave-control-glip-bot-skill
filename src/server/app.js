@@ -8,7 +8,7 @@ import { generate } from 'shortid'
 import copy from 'json-deep-copy'
 import _ from 'lodash'
 import express from 'express'
-import { extraPath, jwtPrefix } from 'ringcentral-personal-chatbot/dist/server/common/constants'
+import { extraPath, jwtPrefix, defaultState, authUrlDefault } from 'ringcentral-personal-chatbot/dist/server/common/constants'
 import { jwtAuth } from 'ringcentral-personal-chatbot'
 
 const pack = require(resolve(__dirname, '../../package.json'))
@@ -28,6 +28,8 @@ export default (app) => {
       title: pack.name,
       jwtPrefix,
       version: pack.version,
+      defaultState,
+      authUrlDefault,
       server: RINGCENTRAL_CHATBOT_SERVER
     }
     data._global = copy(data)

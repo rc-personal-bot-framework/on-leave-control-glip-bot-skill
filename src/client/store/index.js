@@ -1,6 +1,7 @@
 import SubX from 'subx'
 import fetch from '../components/fetch'
 import _ from 'lodash'
+import { Modal, Button } from 'antd'
 
 const url = window.rc.server + '/skill/olc/op'
 const store = SubX.create({
@@ -57,15 +58,37 @@ const store = SubX.create({
   },
   async getUser () {
     store.fetchingUser = true
-    await fetch.post(window.rc.server + '/api/action', {
+    let r = await fetch.post(window.rc.server + '/api/action', {
       action: 'get-user'
     }, {
       handleErr: () => {
         console.log('fetch user error')
-        window.location.href = window.rc.redirect
+        let url = window.rc.authUrlDefault.replace(
+          window.rc.defaultState,
+          'redirect=' + encodeURIComponent(window.location.href)
+        )
+        Modal.info({
+          title: 'Login required',
+          content: (
+            <div className='pd2y'>
+              <a
+                href={url}
+              >
+                <Button type='primary'>Login</Button>
+              </a>
+            </div>
+          ),
+          footer: null,
+          okButtonProps: {
+            style: {
+              display: 'none'
+            }
+          }
+        })
       }
     })
     store.fetchingUser = false
+    return r
   }
 })
 

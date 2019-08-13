@@ -1,6 +1,6 @@
 {
   "name": "on-leave-control-glip-bot-skill",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "On leave control bot skill for [ringcentral-personal-chatbot-js]",
   "main": "dist/server/index.js",
   "scripts": {
@@ -67,7 +67,7 @@
     "shortid": "2.2.14"
   },
   "peerDependencies": {
-    "ringcentral-personal-chatbot": "^0.10.4"
+    "ringcentral-personal-chatbot": ">=0.10.8"
   },
   "standard": {
     "parser": "babel-eslint",
