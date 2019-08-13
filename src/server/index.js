@@ -1,9 +1,16 @@
 import Olc from './model'
 import extendApp from './app'
 
+Olc.sync()
+
+const { RINGCENTRAL_CHATBOT_SERVER, SERVER_HOME = '/' } = process.env
+const appHome = RINGCENTRAL_CHATBOT_SERVER + SERVER_HOME
+
 export const name = 'Bot skill: On leave control'
 export const description = 'On leave control bot skill for [ringcentral-personal-chatbot-js], click bot settings to set your rules.'
-export const homepage = 'https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill#readme'
+export const homepage = RINGCENTRAL_CHATBOT_SERVER
+  ? appHome
+  : 'https://github.com/rc-personal-bot-framework/on-leave-control-glip-bot-skill#readme'
 
 export const onPostAdd = async ({
   text, // original text
