@@ -52,7 +52,7 @@
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "react-subx": "0.4.9",
     "serverless": "1.42.2",
-    "shelljs": "0.8.3",
+    "shelljs": "0.8.5",
     "standard": "12.0.1",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.2",
