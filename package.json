@@ -47,7 +47,7 @@
     "less": "3.9.0",
     "less-loader": "5.0.0",
     "mini-css-extract-plugin": "0.6.0",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "ngrok": "3.1.1",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "react-subx": "0.4.9",
